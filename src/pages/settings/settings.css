@@ -38,9 +38,9 @@
   }
   
   .settingsPP > img {
-    height: 70px;
-    width: 70px;
-    border-radius: 20px;
+    height: 80px;
+    width: 80px;
+    border-radius: 5px;
     object-fit: cover;
   }
   
