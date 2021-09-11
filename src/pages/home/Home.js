@@ -24,9 +24,9 @@ const Home = () => {
       <Row>
         <Col md={8}>
           <Row>
-            {posts.map((post) => (
-              <Post post={post} />
-            ))}
+            {posts.length === 0
+              ? "No posts found"
+              : posts.map((post) => <Post post={post} key={post._id} />)}
           </Row>
         </Col>
         <Col md={4}>
