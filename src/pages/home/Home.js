@@ -12,7 +12,7 @@ const Home = () => {
   const { search } = useLocation();
   useEffect(() => {
     const fetchPosts = async () => {
-      const res = await axios.get("/posts" + search);
+      const res = await axios.get("https://nameless-anchorage-88117.herokuapp.com/api/posts" + search);
       setPosts(res.data);
     };
     fetchPosts();
@@ -24,9 +24,7 @@ const Home = () => {
       <Row>
         <Col md={8}>
           <Row>
-            {posts.length === 0
-              ? "No posts found"
-              : posts.map((post) => <Post post={post} key={post._id} />)}
+            {posts.map((post) => <Post post={post} key={post._id} />)}
           </Row>
         </Col>
         <Col md={4}>
