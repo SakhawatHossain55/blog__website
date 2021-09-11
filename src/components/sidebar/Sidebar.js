@@ -1,9 +1,9 @@
+import React from 'react';
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import "./sidebar.css";
 
-export default function Sidebar() {
+const Sidebar = () => {
   const [cats, setCats] = useState([]);
 
   useEffect(() => {
@@ -13,11 +13,11 @@ export default function Sidebar() {
     };
     getCats();
   }, []);
-
+console.log(cats);
   return (
     <div className="sidebar">
-      <div className="sidebarItem">
-        <div className="sidebarTitle">ABOUT ME</div>
+      <div className="sidebar__item">
+        <div className="sidebar__title">ABOUT ME</div>
         <img src="https://i.ibb.co/GMhRWQh/ISg-Uj-Ss-A-400x400.jpg" alt="" />
         <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque,
@@ -25,25 +25,28 @@ export default function Sidebar() {
           Cumque, anim
         </p>
       </div>
-      <div className="sidebarTitle">
-        <span className="sidebarTitle">CATEGORIES</span>
-        <ul className="sidebarList">
+      <div className="sidebar__title">
+        <span className="sidebar__title">CATEGORIES</span>
+        <ul>
           {cats.map((c) => (
             <Link to={`/?cat=${c.name}`} className="link">
-              <li className="sidebarListItem">{c.name}</li>
+              <li>{c.name}</li>
             </Link>
           ))}
         </ul>
       </div>
-      <div className="sidebarItem">
-        <span className="sidebarTitle">FOLLOW US</span>
-        <div className="sidebarSocial">
-          <i className="sidebarIcon fab fa-facebook-square"></i>
-          <i className="sidebarIcon fab fa-twitter-square"></i>
-          <i className="sidebarIcon fab fa-pinterest-square"></i>
-          <i className="sidebarIcon fab fa-instagram-square"></i>
+      <div className="sidebar__item">
+        <span className="sidebar__title">FOLLOW US</span>
+        <div className="sidebar__title__social">
+          <i className=" fab fa-facebook-square"></i>
+          <i className=" fab fa-twitter-square"></i>
+          <i className=" fab fa-pinterest-square"></i>
+          <i className=" fab fa-instagram-square"></i>
         </div>
       </div>
     </div>
   );
 }
+
+
+export default Sidebar;

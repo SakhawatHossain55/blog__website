@@ -1,10 +1,10 @@
+import React from "react";
 import axios from "axios";
 import { useContext, useRef } from "react";
 import { Link } from "react-router-dom";
 import { Context } from "../../context/Context";
-import "./login.css";
 
-export default function Login() {
+const Login = () => {
   const userRef = useRef();
   const passwordRef = useRef();
   const { dispatch, isFetching } = useContext(Context);
@@ -25,23 +25,17 @@ export default function Login() {
 
   return (
     <div className="login">
-      <span className="loginTitle">Login</span>
-      <form className="loginForm" onSubmit={handleSubmit}>
+      <span className="login__title">Login</span>
+      <form onSubmit={handleSubmit}>
         <label>Username</label>
-        <input
-          type="text"
-          className="loginInput"
-          placeholder="Enter your username..."
-          ref={userRef}
-        />
+        <input type="text" placeholder="Enter your username..." ref={userRef} />
         <label>Password</label>
         <input
           type="password"
-          className="loginInput"
           placeholder="Enter your password..."
           ref={passwordRef}
         />
-        <button className="loginButton" type="submit" disabled={isFetching}>
+        <button type="submit" disabled={isFetching}>
           Login
         </button>
       </form>
@@ -52,4 +46,6 @@ export default function Login() {
       </button>
     </div>
   );
-}
+};
+
+export default Login;

@@ -1,0 +1,14 @@
+.banner {
+  img {
+    height: 400px;
+  }
+  p {
+    color: black;
+  }
+  b {
+    color: black !important;
+  }
+  &__slider-button {
+    margin: 30px 0;
+  }
+}

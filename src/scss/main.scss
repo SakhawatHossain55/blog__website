@@ -1,0 +1,11 @@
+@import './abstract/variable';
+@import "node_modules/bootstrap/scss/bootstrap";
+@import './global/global';
+@import './global/reset';
+@import './components/banner';
+@import './components/login';
+@import './components/topBar';
+@import './components/write';
+@import './components/register';
+@import './components/sidebar';
+@import './components/post';

@@ -1,3 +1,4 @@
+import React from "react";
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import { useLocation } from "react-router";
@@ -5,7 +6,7 @@ import { Link } from "react-router-dom";
 import { Context } from "../../context/Context";
 import "./singlePost.css";
 
-export default function SinglePost() {
+const SinglePost = () => {
   const location = useLocation();
   const path = location.pathname.split("/")[2];
   const [post, setPost] = useState({});
@@ -13,6 +14,7 @@ export default function SinglePost() {
   const { user } = useContext(Context);
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
+  const [category, setCategory] = useState("");
   const [updateMode, setUpdateMode] = useState(false);
 
   useEffect(() => {
@@ -21,6 +23,7 @@ export default function SinglePost() {
       setPost(res.data);
       setTitle(res.data.title);
       setDesc(res.data.desc);
+      setCategory(res.data.category);
     };
     getPost();
   }, [path]);
@@ -40,8 +43,9 @@ export default function SinglePost() {
         username: user.username,
         title,
         desc,
+        category,
       });
-      setUpdateMode(false)
+      setUpdateMode(false);
     } catch (err) {}
   };
 
@@ -96,6 +100,15 @@ export default function SinglePost() {
         ) : (
           <p className="singlePostDesc">{desc}</p>
         )}
+        {updateMode ? (
+          <textarea
+            className="singlePostDescInput"
+            value={category}
+            onChange={(e) => setCategory(e.target.value)}
+          />
+        ) : (
+          <p className="singlePostDesc">{category}</p>
+        )}
         {updateMode && (
           <button className="singlePostButton" onClick={handleUpdate}>
             Update
@@ -104,4 +117,6 @@ export default function SinglePost() {
       </div>
     </div>
   );
-}
+};
+
+export default SinglePost;

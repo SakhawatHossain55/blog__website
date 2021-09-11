@@ -1,13 +1,14 @@
-import Home from "./pages/home/Home";
-import TopBar from "./components/topBar/TopBar.jsx";
-import Single from "./pages/single/Single";
-import Write from "./pages/write/Write";
-import Settings from "./pages/settings/Settings";
-import Login from "./pages/login/Login";
-import Register from "./pages/register/Register";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import Login from "./pages/login/Login.js";
+import Register from "./pages/register/Register.js";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { useContext } from "react";
 import { Context } from "./context/Context";
+import Footer from "./components/Footer";
+import TopBar from "./components/common/topBar/TopBar";
+import Write from "./pages/write/Write.js";
+import Settings from "./pages/settings/Settings.js";
+import Single from "./pages/single/Single.js";
+import Home from "./pages/home/Home.js";
 
 function App() {
   const { user } = useContext(Context);
@@ -23,9 +24,11 @@ function App() {
         <Route path="/write">{user ? <Write /> : <Register />}</Route>
         <Route path="/settings">{user ? <Settings /> : <Register />}</Route>
         <Route path="/post/:postId">
-          <Single />
+          
+          {user ? <Single /> : <Register />}
         </Route>
       </Switch>
+      <Footer />
     </Router>
   );
 }

@@ -1,11 +1,11 @@
-import "./write.css";
 import { useContext, useState } from "react";
 import axios from "axios";
 import { Context } from "../../context/Context";
 
-export default function Write() {
+const Write = () => {
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
+  const [category, setCategory] = useState("");
   const [file, setFile] = useState(null);
   const { user } = useContext(Context);
 
@@ -15,6 +15,7 @@ export default function Write() {
       username: user.username,
       title,
       desc,
+      category
     };
     if (file) {
       const data = new FormData();
@@ -34,11 +35,11 @@ export default function Write() {
   return (
     <div className="write">
       {file && (
-        <img className="writeImg" src={URL.createObjectURL(file)} alt="" />
+        <img className="write__img" src={URL.createObjectURL(file)} alt="" />
       )}
 
-      <form className="writeForm" onSubmit={handleSubmit}>
-        <div className="writeFormGroup">
+      <form className="write__form" onSubmit={handleSubmit}>
+        <div className="write__form__group">
           <label htmlFor="fileInput">
             <i className="writeIcon fas fa-plus"></i>
           </label>
@@ -46,16 +47,24 @@ export default function Write() {
           <input
             type="text"
             placeholder="Title"
-            className="writeInput"
+            className="write__form__group__input"
             autoFocus={true}
             onChange={e=>setTitle(e.target.value)}
+          />
+        </div>
+        <div className="writeFormGroup">
+          <input
+            placeholder="Set your category..."
+            type="text"
+            className="write__form__group__input writeText"
+            onChange={e=>setCategory(e.target.value)}
           />
         </div>
         <div className="writeFormGroup">
           <textarea
             placeholder="Tell your story..."
             type="text"
-            className="writeInput writeText"
+            className="write__form__group__input writeText"
             onChange={e=>setDesc(e.target.value)}
           ></textarea>
         </div>
@@ -66,3 +75,5 @@ export default function Write() {
     </div>
   );
 }
+
+export default Write;

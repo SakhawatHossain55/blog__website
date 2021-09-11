@@ -1,12 +1,14 @@
+import React from 'react';
 import { useEffect, useState } from "react";
-import Header from "../../components/header/Header";
 import Posts from "../../components/posts/Posts";
-import Sidebar from "../../components/sidebar/Sidebar";
-import "./home.css";
 import axios from "axios"
 import { useLocation } from "react-router";
+import { Container } from "react-bootstrap";
+import Banner from "../../components/banner/Banner";
+import Sidebar from '../../components/sidebar/Sidebar';
 
-export default function Home() {
+
+const Home = () => {
   const [posts, setPosts] = useState([])
   const { search } = useLocation();
   useEffect(() => {
@@ -18,12 +20,14 @@ export default function Home() {
   }, [search]);
 
   return (
-    <>
-      <Header />
-      <div className="home">
+    <Container>
+      <Banner />
+      <div style={{display: 'flex'}}>
           <Posts posts={posts} />
           <Sidebar />
       </div>
-    </>
+    </Container>
   );
 }
+
+export default Home;

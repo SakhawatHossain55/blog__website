@@ -1,9 +1,10 @@
+import React from 'react';
 import { Link } from "react-router-dom";
-import "./register.css";
 import axios from "axios";
 import { useState } from "react";
 
-export default function Register() {
+
+const Register = () => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -26,7 +27,7 @@ export default function Register() {
 
   return (
     <div className="register">
-      <span className="registerTitle">Register</span>
+      <span className="register__title">Register</span>
       <form className="registerForm" onSubmit={handleSubmit}>
         <label>Username</label>
         <input
@@ -66,3 +67,5 @@ export default function Register() {
     </div>
   );
 }
+
+export default Register;
