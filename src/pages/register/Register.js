@@ -26,7 +26,7 @@ const Register = () => {
   };
 
   return (
-    <div className="register">
+    <div className="register d-flex align-items-center justify-content-center">
       <span className="register__title">Register</span>
       <form className="registerForm" onSubmit={handleSubmit}>
         <label>Username</label>

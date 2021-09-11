@@ -1,9 +1,8 @@
-import React from 'react';
-import "./settings.css";
-import Sidebar from "../../components/sidebar/Sidebar";
+import React from "react";
 import { useContext, useState } from "react";
 import { Context } from "../../context/Context";
 import axios from "axios";
+import { Container } from "react-bootstrap";
 
 const Settings = () => {
   const [file, setFile] = useState(null);
@@ -13,7 +12,7 @@ const Settings = () => {
   const [success, setSuccess] = useState(false);
 
   const { user, dispatch } = useContext(Context);
-  const PF = "http://localhost:5000/images/"
+  const PF = "http://localhost:5000/images/";
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -43,21 +42,21 @@ const Settings = () => {
     }
   };
   return (
-    <div className="settings">
-      <div className="settingsWrapper">
-        <div className="settingsTitle">
+    <Container>
+      <div className="settings">
+        <div className="d-flex justify-content-between">
           <span className="settingsUpdateTitle">Update Your Account</span>
           <span className="settingsDeleteTitle">Delete Account</span>
         </div>
-        <form className="settingsForm" onSubmit={handleSubmit}>
+        <form className="settingsForm d-flex" onSubmit={handleSubmit}>
           <label>Profile Picture</label>
-          <div className="settingsPP">
+          <div className="settingsPP my-3">
             <img
-              src={file ? URL.createObjectURL(file) : PF+user.profilePic}
+              src={file ? URL.createObjectURL(file) : PF + user.profilePic}
               alt=""
             />
             <label htmlFor="fileInput">
-              <i className="settingsPPIcon far fa-user-circle"></i>
+              <i className="settingsPPIcon d-flex align-items-center justify-content-center far fa-user-circle"></i>
             </label>
             <input
               type="file"
@@ -83,7 +82,10 @@ const Settings = () => {
             type="password"
             onChange={(e) => setPassword(e.target.value)}
           />
-          <button className="settingsSubmit" type="submit">
+          <button
+            className="btn-brand d-flex align-items-center justify-content-center style__button"
+            type="submit"
+          >
             Update
           </button>
           {success && (
@@ -95,9 +97,8 @@ const Settings = () => {
           )}
         </form>
       </div>
-      <Sidebar />
-    </div>
+    </Container>
   );
-}
+};
 
 export default Settings;

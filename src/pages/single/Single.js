@@ -1,14 +1,13 @@
 import React from 'react';
-import Sidebar from '../../components/sidebar/Sidebar'
+import { Container } from 'react-bootstrap';
 import SinglePost from '../../components/singlePost/SinglePost'
 import './Single.css'
 
 const Single = () => {
     return (
-        <div className="single">
+        <Container className="single">
             <SinglePost />
-            <Sidebar />
-        </div>
+        </Container>
     )
 }
 

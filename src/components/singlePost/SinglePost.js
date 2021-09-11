@@ -14,7 +14,6 @@ const SinglePost = () => {
   const { user } = useContext(Context);
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
-  const [category, setCategory] = useState("");
   const [updateMode, setUpdateMode] = useState(false);
 
   useEffect(() => {
@@ -23,7 +22,6 @@ const SinglePost = () => {
       setPost(res.data);
       setTitle(res.data.title);
       setDesc(res.data.desc);
-      setCategory(res.data.category);
     };
     getPost();
   }, [path]);
@@ -43,7 +41,6 @@ const SinglePost = () => {
         username: user.username,
         title,
         desc,
-        category,
       });
       setUpdateMode(false);
     } catch (err) {}
@@ -99,15 +96,6 @@ const SinglePost = () => {
           />
         ) : (
           <p className="singlePostDesc">{desc}</p>
-        )}
-        {updateMode ? (
-          <textarea
-            className="singlePostDescInput"
-            value={category}
-            onChange={(e) => setCategory(e.target.value)}
-          />
-        ) : (
-          <p className="singlePostDesc">{category}</p>
         )}
         {updateMode && (
           <button className="singlePostButton" onClick={handleUpdate}>

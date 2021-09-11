@@ -1,3 +1,4 @@
+import React from 'react';
 import { useContext, useState } from "react";
 import axios from "axios";
 import { Context } from "../../context/Context";
@@ -5,7 +6,6 @@ import { Context } from "../../context/Context";
 const Write = () => {
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
-  const [category, setCategory] = useState("");
   const [file, setFile] = useState(null);
   const { user } = useContext(Context);
 
@@ -15,10 +15,9 @@ const Write = () => {
       username: user.username,
       title,
       desc,
-      category
     };
     if (file) {
-      const data = new FormData();
+      const data =new FormData();
       const filename = Date.now() + file.name;
       data.append("name", filename);
       data.append("file", file);
@@ -35,36 +34,32 @@ const Write = () => {
   return (
     <div className="write">
       {file && (
-        <img className="write__img" src={URL.createObjectURL(file)} alt="" />
+        <img className="writeImg" src={URL.createObjectURL(file)} alt="" />
       )}
-
-      <form className="write__form" onSubmit={handleSubmit}>
-        <div className="write__form__group">
+      <form className="writeForm" onSubmit={handleSubmit}>
+        <div className="writeFormGroup">
           <label htmlFor="fileInput">
             <i className="writeIcon fas fa-plus"></i>
           </label>
-          <input type="file" id="fileInput" style={{ display: "none" }}  onChange={(e) => setFile(e.target.files[0])}/>
+          <input
+            type="file"
+            id="fileInput"
+            style={{ display: "none" }}
+            onChange={(e) => setFile(e.target.files[0])}
+          />
           <input
             type="text"
             placeholder="Title"
-            className="write__form__group__input"
+            className="writeInput"
             autoFocus={true}
             onChange={e=>setTitle(e.target.value)}
-          />
-        </div>
-        <div className="writeFormGroup">
-          <input
-            placeholder="Set your category..."
-            type="text"
-            className="write__form__group__input writeText"
-            onChange={e=>setCategory(e.target.value)}
           />
         </div>
         <div className="writeFormGroup">
           <textarea
             placeholder="Tell your story..."
             type="text"
-            className="write__form__group__input writeText"
+            className="writeInput writeText"
             onChange={e=>setDesc(e.target.value)}
           ></textarea>
         </div>
@@ -75,5 +70,6 @@ const Write = () => {
     </div>
   );
 }
+
 
 export default Write;

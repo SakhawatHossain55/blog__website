@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 const Banner = () => {
   return (
     <div className="banner">
-      <div className="mt-4">
+      <div className="my-4">
         <Carousel slide={false} fade={false}>
           <Carousel.Item interval={5000}>
             <img className="d-block w-100" src={banner1} alt="First slide" />

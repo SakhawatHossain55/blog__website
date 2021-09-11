@@ -6,7 +6,8 @@ const Post = ({ post }) => {
   const { title, username, _id, createdAt } = post;
   const PF = "http://localhost:5000/images/";
   return (
-    <Col lg={6} className="post mb-4 text-center">
+    <Col md={6} className="mb-4 text-center">
+      <div className="post h-100">
           {post.photo && (
             <img className="postImg" src={PF + post.photo} alt="" />
           )}
@@ -25,6 +26,7 @@ const Post = ({ post }) => {
           <Link to={`/post/${_id}`} className="link">
             <button className="btn-brand mt-3">Detail</button>
         </Link>
+        </div>
     </Col>
   );
 }
